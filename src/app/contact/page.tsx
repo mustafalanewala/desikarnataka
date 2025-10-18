@@ -230,9 +230,9 @@ export default function ContactPage() {
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">ಇಮೇಲ್</h4>
                     <p className="text-gray-600">
-                      info@kannadaexpress.com
+                      info@desikarnataka.com
                       <br />
-                      support@kannadaexpress.com
+                      support@desikarnataka.com
                     </p>
                   </div>
                 </div>

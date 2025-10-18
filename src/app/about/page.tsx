@@ -47,7 +47,7 @@ export default function AboutPage() {
         <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-8 lg:p-12">
           <div className="text-center mb-12">
             <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-              ಕನ್ನಡ ಎಕ್ಸ್‌ಪ್ರೆಸ್ ಬಗ್ಗೆ
+              ದೇಶಿ ಕರ್ನಾಟಕ ಬಗ್ಗೆ
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               ಕರ್ನಾಟಕದ ಸುದ್ದಿಗಳನ್ನು ನಿಮಗೆ ತಲುಪಿಸುವ ನಮ್ಮ ಪ್ರಯತ್ನದ ಬಗ್ಗೆ ತಿಳಿಯಿರಿ
@@ -57,9 +57,9 @@ export default function AboutPage() {
           <div className="prose prose-lg max-w-none">
             <div className="text-gray-800 leading-relaxed space-y-6">
               <p className="text-lg">
-                ಕನ್ನಡ ಎಕ್ಸ್‌ಪ್ರೆಸ್ ಕರ್ನಾಟಕದ ಪ್ರಮುಖ ಸುದ್ದಿ ಪೋರ್ಟಲ್ ಆಗಿದೆ. ನಾವು
-                ಕರ್ನಾಟಕದ ಜನರಿಗೆ ನಿಖರವಾದ, ವೇಗದ ಸುದ್ದಿಗಳನ್ನು ಒದಗಿಸುವ ಉದ್ದೇಶದಿಂದ
-                ಕೆಲಸ ಮಾಡುತ್ತಿದ್ದೇವೆ.
+                ದೇಶಿ ಕರ್ನಾಟಕ ಕರ್ನಾಟಕದ ಪ್ರಮುಖ ಸುದ್ದಿ ಪೋರ್ಟಲ್ ಆಗಿದೆ. ನಾವು ಕರ್ನಾಟಕದ
+                ಜನರಿಗೆ ನಿಖರವಾದ, ವೇಗದ ಸುದ್ದಿಗಳನ್ನು ಒದಗಿಸುವ ಉದ್ದೇಶದಿಂದ ಕೆಲಸ
+                ಮಾಡುತ್ತಿದ್ದೇವೆ.
               </p>
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
@@ -98,9 +98,9 @@ export default function AboutPage() {
                 ನಮ್ಮ ತಂಡ
               </h2>
               <p>
-                ಕನ್ನಡ ಎಕ್ಸ್‌ಪ್ರೆಸ್‌ನಲ್ಲಿ ಅನುಭವಿ ಪತ್ರಕರ್ತರು, ಸಂಪಾದಕರು ಮತ್ತು
-                ತಂತ್ರಜ್ಞರು ಕೆಲಸ ಮಾಡುತ್ತಿದ್ದಾರೆ. ನಮ್ಮ ತಂಡ ಕರ್ನಾಟಕದ ವಿವಿಧ ಭಾಗಗಳಿಂದ
-                ಬಂದಿದ್ದು, ಸ್ಥಳೀಯ ಸುದ್ದಿಗಳನ್ನು ಚೆನ್ನಾಗಿ ಅರ್ಥಮಾಡಿಕೊಂಡಿದೆ.
+                ದೇಶಿ ಕರ್ನಾಟಕದಲ್ಲಿ ಅನುಭವಿ ಪತ್ರಕರ್ತರು, ಸಂಪಾದಕರು ಮತ್ತು ತಂತ್ರಜ್ಞರು
+                ಕೆಲಸ ಮಾಡುತ್ತಿದ್ದಾರೆ. ನಮ್ಮ ತಂಡ ಕರ್ನಾಟಕದ ವಿವಿಧ ಭಾಗಗಳಿಂದ ಬಂದಿದ್ದು,
+                ಸ್ಥಳೀಯ ಸುದ್ದಿಗಳನ್ನು ಚೆನ್ನಾಗಿ ಅರ್ಥಮಾಡಿಕೊಂಡಿದೆ.
               </p>
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
@@ -112,13 +112,13 @@ export default function AboutPage() {
                 ಸಂರಕ್ಷಣೆ ಬಗ್ಗೆ ಅರಿವು ಮೂಡಿಸುವ ಕಾರ್ಯಕ್ರಮಗಳನ್ನು ನಡೆಸುತ್ತೇವೆ.
               </p>
 
-              <div className="bg-orange-50 rounded-lg p-6 mt-8">
-                <h3 className="text-xl font-bold text-orange-800 mb-2">
+              <div className="bg-accent-green/10 rounded-lg p-6 mt-8">
+                <h3 className="text-xl font-bold text-accent-green mb-2">
                   ನಮ್ಮೊಂದಿಗೆ ಸೇರಿ
                 </h3>
-                <p className="text-orange-700">
-                  ಕನ್ನಡ ಎಕ್ಸ್‌ಪ್ರೆಸ್‌ನೊಂದಿಗೆ ಸೇರಿ ಕರ್ನಾಟಕದ ಅಭಿವೃದ್ಧಿಗೆ ಕೊಡುಗೆ
-                  ನೀಡಿ. ನಿಮ್ಮ ಸಲಹೆಗಳು ಮತ್ತು ಪ್ರತಿಕ್ರಿಯೆಗಳನ್ನು ನಮಗೆ ಕಳುಹಿಸಿ.
+                <p className="text-accent-green">
+                  ದೇಶಿ ಕರ್ನಾಟಕದೊಂದಿಗೆ ಸೇರಿ ಕರ್ನಾಟಕದ ಅಭಿವೃದ್ಧಿಗೆ ಕೊಡುಗೆ ನೀಡಿ.
+                  ನಿಮ್ಮ ಸಲಹೆಗಳು ಮತ್ತು ಪ್ರತಿಕ್ರಿಯೆಗಳನ್ನು ನಮಗೆ ಕಳುಹಿಸಿ.
                 </p>
               </div>
             </div>
