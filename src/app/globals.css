@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #1e293b;
+  --accent-green: #059669;
+  --accent-yellow: #d97706;
+  --accent-blue: #2563eb;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #ffffff;
+    --foreground: #1e293b;
+    --accent-blue: #1d4ed8;
+    --accent-purple: #7c3aed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-kannada), "Open Sans", "Roboto", -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-weight: bold;
+}
+
+/* Accent color utilities */
+.text-accent-green {
+  color: var(--accent-green);
+}
+
+.text-accent-yellow {
+  color: var(--accent-yellow);
+}
+
+.text-accent-blue {
+  color: var(--accent-blue);
+}
+
+.bg-accent-green {
+  background-color: var(--accent-green);
+}
+
+.bg-accent-yellow {
+  background-color: var(--accent-yellow);
+}
+
+.bg-accent-blue {
+  background-color: var(--accent-blue);
+}
+
+.border-accent-green {
+  border-color: var(--accent-green);
+}
+
+.border-accent-yellow {
+  border-color: var(--accent-yellow);
+}
+
+.border-accent-blue {
+  border-color: var(--accent-blue);
+}
+
+/* Hover effects with accent colors */
+.hover-accent-green:hover {
+  color: var(--accent-green);
+}
+
+.hover-accent-yellow:hover {
+  color: var(--accent-yellow);
+}
+
+.hover-accent-blue:hover {
+  color: var(--accent-blue);
+}
+
+/* Line clamp utilities */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-clamp: 2;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-clamp: 3;
+}
