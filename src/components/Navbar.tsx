@@ -40,6 +40,34 @@ export default function Navbar() {
                 {category}
               </Link>
             ))}
+            {/* Static sections */}
+            <Link
+              href="/videos"
+              className={cn(
+                "font-medium text-base whitespace-nowrap transition-colors duration-200",
+                "text-white hover:text-yellow-300"
+              )}
+            >
+              ವೀಡಿಯೊ
+            </Link>
+            <Link
+              href="/galleries"
+              className={cn(
+                "font-medium text-base whitespace-nowrap transition-colors duration-200",
+                "text-white hover:text-yellow-300"
+              )}
+            >
+              ಗ್ಯಾಲರಿ
+            </Link>
+            <Link
+              href="/blogs"
+              className={cn(
+                "font-medium text-base whitespace-nowrap transition-colors duration-200",
+                "text-white hover:text-yellow-300"
+              )}
+            >
+              ಬ್ಲಾಗ್
+            </Link>
           </div>
 
           <div className="justify-self-end">
@@ -78,6 +106,27 @@ export default function Navbar() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 ನಮ್ಮ ಬಗ್ಗೆ
+              </Link>
+              <Link
+                href="/videos"
+                className="font-medium text-lg text-white hover:text-yellow-300 transition-colors duration-200 py-2 block"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                ವೀಡಿಯೊ
+              </Link>
+              <Link
+                href="/galleries"
+                className="font-medium text-lg text-white hover:text-yellow-300 transition-colors duration-200 py-2 block"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                ಗ್ಯಾಲರಿ
+              </Link>
+              <Link
+                href="/blogs"
+                className="font-medium text-lg text-white hover:text-yellow-300 transition-colors duration-200 py-2 block"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                ಬ್ಲಾಗ್
               </Link>
               <Link
                 href="/privacy"

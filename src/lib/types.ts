@@ -31,6 +31,18 @@ export type GalleryItem = {
   }[]
 }
 
+export type BlogItem = {
+  blog_Id: number
+  blog_Title: string
+  slug: string
+  blog_Content: string
+  image: string
+  insert_Date: string
+  blog_Source: string
+  category_Id: number
+  category_Name: string
+}
+
 export type ApiResponse = {
   success: boolean
   message: string
@@ -38,5 +50,6 @@ export type ApiResponse = {
     news: NewsItem[]
     videos: VideoItem[]
     galleries: GalleryItem[]
+    blogs: BlogItem[]
   }
 }
