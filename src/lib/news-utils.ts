@@ -15,6 +15,8 @@ export function formatDate(iso: string) {
 const categorySlugMap: Record<string, string> = {
   "ಸಾಮಾನ್ಯ": "general",
   "ಬ್ಯುಸಿನೆಸ್": "business",
+  "ವ್ಯಾಪಾರ": "business",
+  "ಶಿಕ್ಷಣ": "education",
 };
 
 export function slugifyCategory(name: string) {
@@ -23,11 +25,8 @@ export function slugifyCategory(name: string) {
     return categorySlugMap[name];
   }
 
-  // Fallback to the original logic for any unmapped categories
-  return name
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)+/g, "");
+  // Fallback to the original name for any unmapped categories
+  return name;
 }
 
 export function getCategoryNameFromSlug(slug: string): string {

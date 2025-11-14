@@ -5,6 +5,7 @@ import Link from "next/link";
 import useSWR from "swr";
 import { fetcher } from "@/lib/fetcher";
 import { NewsItem } from "@/lib/types";
+import { slugifyCategory } from "@/lib/news-utils";
 import Image from "next/image";
 
 // Carousel-based hero for top news
@@ -113,9 +114,9 @@ export default function Hero() {
                 </div>
 
                 <div className="relative z-10 p-6 md:p-12 flex flex-col h-full justify-end">
-                  <span className="inline-block px-3 py-1 bg-green-100 w-fit text-accent-green rounded-full text-sm font-semibold mb-3">
+                  <Link href={`/category/${encodeURIComponent(slugifyCategory(item.categrory_Name))}`} className="inline-block px-3 py-1 bg-green-100 w-fit text-accent-green rounded-full text-sm font-semibold mb-3 hover:bg-green-200 transition-colors">
                     {item.categrory_Name}
-                  </span>
+                  </Link>
                   <h3 className="text-2xl md:text-4xl font-extrabold text-white leading-tight mb-3">
                     {item.news_Title}
                   </h3>

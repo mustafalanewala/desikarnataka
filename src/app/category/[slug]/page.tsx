@@ -85,9 +85,10 @@ export default function CategoryPage({
   const categoryName = getCategoryFromSlug(data?.data?.news || [], slug);
   const categoryNews = filterByCategory(data?.data?.news || [], slug);
 
-  if (categoryNews.length === 0) {
-    notFound();
-  }
+  // If no category found, still show the page
+  // if (categoryNews.length === 0) {
+  //   notFound();
+  // }
 
   // Pagination logic
   const totalItems = categoryNews.length;

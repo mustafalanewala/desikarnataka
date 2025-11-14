@@ -2,6 +2,11 @@
 
 import useSWR from "swr";
 import { fetcher } from "@/lib/fetcher";
+import Image from "next/image";
+
+function stripHtml(html: string) {
+  return html.replace(/<[^>]*>/g, '');
+}
 
 export default function BlogsPage() {
   const { data, error, isLoading } = useSWR("news-data", fetcher);
@@ -28,15 +33,25 @@ export default function BlogsPage() {
         {blogs.length === 0 ? (
           <p className="text-gray-600">No blog posts available.</p>
         ) : (
-          <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {blogs.map((b: any) => (
               <div
                 key={b.blog_Id}
-                className="bg-white rounded-xl shadow-lg p-6"
+                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
               >
-                <h3 className="font-semibold text-lg mb-2">{b.blog_Title}</h3>
-                <p className="text-sm text-gray-600">{b.insert_Date}</p>
-                <p className="text-gray-700 mt-2">{b.blog_Content}</p>
+                <div className="relative h-48">
+                  <Image
+                    src={b.image}
+                    alt={b.blog_Title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-semibold text-lg mb-2 text-gray-900">{b.blog_Title}</h3>
+                  <p className="text-sm text-gray-600 mb-3">{b.insert_Date}</p>
+                  <p className="text-gray-700 text-sm leading-relaxed line-clamp-3">{stripHtml(b.blog_Content)}</p>
+                </div>
               </div>
             ))}
           </div>
