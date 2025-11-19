@@ -4,13 +4,16 @@ import { use } from "react";
 import useSWR from "swr";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import { fetcher } from "@/lib/fetcher";
-import { formatDate, slugifyCategory } from "@/lib/news-utils";
+import { formatDate } from "@/lib/news-utils";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import Ad from "@/components/Ad";
 
-export default function NewsDetailPage({
+function stripHtml(html: string) {
+  return html.replace(/<[^>]*>/g, '');
+}
+
+export default function BlogDetailPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
@@ -33,7 +36,7 @@ export default function NewsDetailPage({
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-2">
-            Error Loading News
+            Error Loading Blog
           </h1>
           <p className="text-gray-600">Please try again later.</p>
         </div>
@@ -41,29 +44,20 @@ export default function NewsDetailPage({
     );
   }
 
-  const newsItem = data?.data?.news?.find((item) => {
-    console.log("Comparing:", item.slug, "with", decodedSlug);
-    return item.slug === decodedSlug;
-  });
+  const blogItem = data?.data?.blogs?.find((item) => item.slug === decodedSlug);
 
-  console.log("News item found:", newsItem);
-  console.log(
-    "Available slugs:",
-    data?.data?.news?.map((item) => item.slug)
-  );
-
-  if (!newsItem) {
+  if (!blogItem) {
     notFound();
   }
 
-  const relatedNews = data?.data?.news
+  const relatedBlogs = data?.data?.blogs
     ?.filter(
       (item) =>
-        item.categrory_Name === newsItem.categrory_Name &&
-        item.news_Id !== newsItem.news_Id
+        item.category_Name === blogItem.category_Name &&
+        item.blog_Id !== blogItem.blog_Id
     )
-    .sort(() => 0.5 - Math.random()) // Randomize
-    .slice(0, 3); // Limit to 3
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 3);
 
   return (
     <div className="min-h-screen bg-white">
@@ -103,10 +97,10 @@ export default function NewsDetailPage({
             />
           </svg>
           <Link
-            href={`/category/${slugifyCategory(newsItem.categrory_Name)}`}
+            href="/blogs"
             className="text-accent-green hover:underline"
           >
-            {newsItem.categrory_Name}
+            Blogs
           </Link>
           <svg
             className="w-4 h-4 text-gray-400"
@@ -121,7 +115,7 @@ export default function NewsDetailPage({
               d="M9 5l7 7-7 7"
             />
           </svg>
-          <span className="text-gray-600 truncate">{newsItem.news_Title}</span>
+          <span className="text-gray-600 truncate">{blogItem.blog_Title}</span>
         </nav>
       </div>
 
@@ -131,8 +125,8 @@ export default function NewsDetailPage({
           {/* Featured Image */}
           <div className="relative h-80 md:h-[500px] w-full">
             <Image
-              src={newsItem.image}
-              alt={newsItem.news_Title}
+              src={blogItem.image}
+              alt={blogItem.blog_Title}
               fill
               className="object-cover"
               priority
@@ -143,27 +137,27 @@ export default function NewsDetailPage({
           <div className="px-6 md:px-12 pt-8 pb-6 border-b border-gray-200">
             <div className="max-w-4xl">
               <span className="inline-block px-4 py-2 bg-accent-green text-white text-sm font-semibold rounded-full mb-4">
-                {newsItem.categrory_Name}
+                {blogItem.category_Name}
               </span>
               <h1 className="text-3xl md:text-5xl font-black mb-4 leading-tight text-black">
-                {newsItem.news_Title}
+                {blogItem.blog_Title}
               </h1>
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
                 <span className="text-gray-600 text-sm">
-                  {formatDate(newsItem.insert_Date)}
+                  {formatDate(blogItem.insert_Date)}
                 </span>
                 <div className="flex items-center gap-2">
                   <span className="text-gray-600 text-sm">Source:</span>
                   <span className="font-semibold text-accent-green bg-accent-green/10 px-3 py-1 rounded-full text-sm">
-                    {newsItem.news_Source}
+                    {blogItem.blog_Source}
                   </span>
                   <button
                     onClick={async () => {
                       if (navigator.share) {
                         try {
                           await navigator.share({
-                            title: newsItem.news_Title,
-                            text: newsItem.news_Content.substring(0, 100) + "...",
+                            title: blogItem.blog_Title,
+                            text: stripHtml(blogItem.blog_Content).substring(0, 100) + "...",
                             url: window.location.href,
                           });
                         } catch (err) {
@@ -211,12 +205,7 @@ export default function NewsDetailPage({
           {/* Content */}
           <div className="p-6 md:p-12">
             <div className="prose prose-xl max-w-none text-gray-900 mb-10">
-              {newsItem.news_Content.split("।").map((sentence, index) => (
-                <p key={index} className="mb-6 leading-relaxed">
-                  {sentence.trim()}
-                  {sentence.trim() && "।"}
-                </p>
-              ))}
+              <div dangerouslySetInnerHTML={{ __html: blogItem.blog_Content }} />
             </div>
 
             <footer className="border-t border-gray-200 pt-8 mt-8">
@@ -224,61 +213,56 @@ export default function NewsDetailPage({
                 <div className="flex items-center gap-2 text-sm text-black">
                   <span>Published on</span>
                   <span className="font-semibold text-black">
-                    {formatDate(newsItem.insert_Date)}
+                    {formatDate(blogItem.insert_Date)}
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-sm text-black">Category:</span>
-                  <Link
-                    href={`/category/${slugifyCategory(
-                      newsItem.categrory_Name
-                    )}`}
-                    className="px-4 py-2 bg-accent-green text-white rounded-full text-sm font-medium hover:bg-accent-green/80 transition-colors duration-200"
-                  >
-                    {newsItem.categrory_Name}
-                  </Link>
+                  <span className="px-4 py-2 bg-accent-green text-white rounded-full text-sm font-medium">
+                    {blogItem.category_Name}
+                  </span>
                 </div>
               </div>
             </footer>
           </div>
         </div>
 
-        {/* Related Articles */}
-        {relatedNews.length > 0 && (
+        {/* Related Blogs */}
+        {relatedBlogs.length > 0 && (
           <section className="mt-16">
             <h2 className="text-3xl font-bold text-black mb-10 text-center">
-              Related Articles
+              Related Blogs
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {relatedNews.map((article) => (
+              {relatedBlogs.map((blog) => (
                 <Link
-                  key={article.news_Id}
-                  href={`/news/${encodeURIComponent(article.slug)}`}
+                  key={blog.blog_Id}
+                  href={`/blogs/${encodeURIComponent(blog.slug)}`}
                   className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2"
                 >
                   <div className="relative h-48 overflow-hidden">
                     <Image
-                      src={article.image}
-                      alt={article.news_Title}
+                      src={blog.image}
+                      alt={blog.blog_Title}
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute top-3 left-3">
                       <span className="px-3 py-1 bg-accent-green text-white text-xs font-semibold rounded-full shadow-lg">
-                        {article.categrory_Name}
+                        {blog.category_Name}
                       </span>
                     </div>
                   </div>
                   <div className="p-6">
                     <h3 className="text-xl font-bold text-black mb-3 line-clamp-2 group-hover:text-accent-green transition-colors duration-200">
-                      {article.news_Title}
+                      {blog.blog_Title}
                     </h3>
                     <p className="text-gray-600 line-clamp-3 mb-4 leading-relaxed">
-                      {article.news_Content}
+                      {stripHtml(blog.blog_Content)}
                     </p>
                     <div className="flex items-center justify-between text-sm text-gray-500">
-                      <span className="font-medium">{article.news_Source}</span>
-                      <span>{formatDate(article.insert_Date)}</span>
+                      <span className="font-medium">{blog.blog_Source}</span>
+                      <span>{formatDate(blog.insert_Date)}</span>
                     </div>
                   </div>
                 </Link>

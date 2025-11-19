@@ -112,10 +112,10 @@ export default function CategoryPage({
         <div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Breadcrumb */}
-            <nav className="flex items-center space-x-2 text-sm py-4">
+            <nav className="flex items-center space-x-2 text-sm py-4 bg-gray-50 px-4 rounded-lg">
               <Link
                 href="/"
-                className="text-accent-green hover:text-accent-green/80 transition-colors duration-300 font-medium flex items-center"
+                className="text-accent-green hover:underline transition-colors duration-300 font-medium flex items-center"
               >
                 <svg
                   className="w-4 h-4 mr-1"

@@ -24,13 +24,13 @@ export default function BreakingNews() {
 
   const categories = Array.from(
     new Set(allNews.map((n) => n.categrory_Name))
-  ).slice(0, 12);
+  );
 
   if (isLoading || breakingNews.length === 0) return null;
 
   const filtered = selectedCategory
-    ? breakingNews.filter((n) => n.categrory_Name === selectedCategory)
-    : breakingNews;
+    ? allNews.filter((n) => n.categrory_Name === selectedCategory).slice(0, 6)
+    : allNews.slice(0, 6);
 
   return (
     <section className="bg-white py-8 px-4">
@@ -41,7 +41,7 @@ export default function BreakingNews() {
             <div className="flex items-center space-x-3">
               <div className="w-3 h-3 bg-accent-green rounded-full animate-ping" />
               <h2 className="text-2xl md:text-3xl font-extrabold text-black">
-                ಬ್ರೇಕಿಂಗ್ ನ್ಯೂಸ್
+                ಬ್ರೇಕಿಂಗ್ ನ್ಯೂಸ್{selectedCategory ? ` - ${selectedCategory}` : ""}
               </h2>
             </div>
 
@@ -99,56 +99,59 @@ export default function BreakingNews() {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((news, index) => (
-            <div
-              key={news.news_Id}
-              className="bg-white rounded-xl overflow-hidden shadow hover:shadow-lg transition"
-            >
-              <Link
-                href={`/news/${encodeURIComponent(news.slug)}`}
-                className="block"
+        {filtered.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filtered.map((news, index) => (
+              <div
+                key={news.news_Id}
+                className="bg-white rounded-xl overflow-hidden shadow hover:shadow-lg transition"
               >
-                <div className="relative h-44 overflow-hidden">
-                  <Image
-                    src={news.image}
-                    alt={news.news_Title}
-                    fill
-                    className="object-cover transform group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute top-3 left-3">
-                    <span className="px-2 py-1 bg-green-100 text-accent-green text-xs font-semibold rounded-full">
-                      {news.categrory_Name}
-                    </span>
-                  </div>
-                  <div className="absolute top-3 right-3">
-                    <div className="w-8 h-8 bg-accent-green rounded-full flex items-center justify-center text-white font-bold">
-                      {index + 1}
+                <Link
+                  href={`/news/${encodeURIComponent(news.slug)}`}
+                  className="block"
+                >
+                  <div className="relative h-44 overflow-hidden">
+                    <Image
+                      src={news.image}
+                      alt={news.news_Title}
+                      fill
+                      className="object-cover transform group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute top-3 left-3">
+                      <span className="px-2 py-1 bg-green-100 text-accent-green text-xs font-semibold rounded-full">
+                        {news.categrory_Name}
+                      </span>
                     </div>
                   </div>
-                </div>
 
-                <div className="p-4">
-                  <h3 className="text-lg font-bold text-black mb-2 line-clamp-2">
-                    {news.news_Title}
-                  </h3>
-                  <p className="text-sm text-gray-600 line-clamp-2 mb-3">
-                    {news.news_Content.substring(0, 120)}...
-                  </p>
-                  <div className="flex items-center justify-between text-xs text-gray-500">
-                    <span>{news.news_Source}</span>
-                    <span>
-                      {new Date(news.insert_Date).toLocaleDateString("kn-IN", {
-                        month: "short",
-                        day: "numeric",
-                      })}
-                    </span>
+                  <div className="p-4">
+                    <h3 className="text-lg font-bold text-black mb-2 line-clamp-2">
+                      {news.news_Title}
+                    </h3>
+                    <p className="text-sm text-gray-600 line-clamp-2 mb-3">
+                      {news.news_Content.substring(0, 120)}...
+                    </p>
+                    <div className="flex items-center justify-between text-xs text-gray-500">
+                      <span>{news.news_Source}</span>
+                      <span>
+                        {new Date(news.insert_Date).toLocaleDateString("kn-IN", {
+                          month: "short",
+                          day: "numeric",
+                        })}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </Link>
+                </Link>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <div className="text-gray-500 text-lg">
+              No articles found in this category.
             </div>
-          ))}
-        </div>
+          </div>
+        )}
 
         {/* Bottom ad */}
         <div className="mt-8">

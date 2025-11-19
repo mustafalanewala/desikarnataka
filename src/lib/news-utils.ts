@@ -17,6 +17,8 @@ const categorySlugMap: Record<string, string> = {
   "ಬ್ಯುಸಿನೆಸ್": "business",
   "ವ್ಯಾಪಾರ": "business",
   "ಶಿಕ್ಷಣ": "education",
+  "ಕ್ರೀಡೆ": "sports",
+  "ವಿಶ್ವ": "world",
 };
 
 export function slugifyCategory(name: string) {

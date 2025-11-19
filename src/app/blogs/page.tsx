@@ -3,6 +3,7 @@
 import useSWR from "swr";
 import { fetcher } from "@/lib/fetcher";
 import Image from "next/image";
+import Link from "next/link";
 
 function stripHtml(html: string) {
   return html.replace(/<[^>]*>/g, '');
@@ -51,6 +52,12 @@ export default function BlogsPage() {
                   <h3 className="font-semibold text-lg mb-2 text-gray-900">{b.blog_Title}</h3>
                   <p className="text-sm text-gray-600 mb-3">{b.insert_Date}</p>
                   <p className="text-gray-700 text-sm leading-relaxed line-clamp-3">{stripHtml(b.blog_Content)}</p>
+                  <Link
+                    href={`/blogs/${encodeURIComponent(b.slug)}`}
+                    className="inline-block mt-3 px-4 py-2 bg-accent-green text-white text-sm font-medium rounded-lg hover:bg-accent-green/80 transition-colors duration-200"
+                  >
+                    Read More
+                  </Link>
                 </div>
               </div>
             ))}
