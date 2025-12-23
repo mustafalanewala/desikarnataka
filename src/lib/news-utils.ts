@@ -19,6 +19,8 @@ const categorySlugMap: Record<string, string> = {
   "ಶಿಕ್ಷಣ": "education",
   "ಕ್ರೀಡೆ": "sports",
   "ವಿಶ್ವ": "world",
+  "ರಾಜಕೀಯ": "politics",
+  "ಭಾರತ": "india",
 };
 
 export function slugifyCategory(name: string) {
@@ -49,7 +51,11 @@ export function getBySlug(items: NewsItem[], slug: string) {
 }
 
 export function filterByCategory(items: NewsItem[], categorySlug: string) {
-  return items.filter((i) => slugifyCategory(i.categrory_Name) === categorySlug)
+  return items.filter((i) => {
+    const itemSlug = slugifyCategory(i.categrory_Name);
+    // Match by slug or by direct category name (for unmapped categories)
+    return itemSlug === categorySlug || i.categrory_Name === categorySlug;
+  });
 }
 
 export function getCategoryFromSlug(items: NewsItem[], categorySlug: string) {

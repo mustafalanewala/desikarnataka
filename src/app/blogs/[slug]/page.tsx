@@ -81,7 +81,7 @@ export default function BlogDetailPage({
                 d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
               />
             </svg>
-            Home
+            ಮನೆ
           </Link>
           <svg
             className="w-4 h-4 text-gray-400"
@@ -100,7 +100,7 @@ export default function BlogDetailPage({
             href="/blogs"
             className="text-accent-green hover:underline"
           >
-            Blogs
+            ಬ್ಲಾಗ್‌ಗಳು
           </Link>
           <svg
             className="w-4 h-4 text-gray-400"
@@ -231,7 +231,7 @@ export default function BlogDetailPage({
         {relatedBlogs.length > 0 && (
           <section className="mt-16">
             <h2 className="text-3xl font-bold text-black mb-10 text-center">
-              Related Blogs
+              ಸಂಬಂಧಿತ ಬ್ಲಾಗ್‌ಗಳು
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {relatedBlogs.map((blog) => (

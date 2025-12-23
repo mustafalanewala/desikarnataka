@@ -26,7 +26,17 @@ export default function BreakingNews() {
     new Set(allNews.map((n) => n.categrory_Name))
   );
 
-  if (isLoading || breakingNews.length === 0) return null;
+  if (isLoading) {
+    return (
+      <section className="bg-white py-8 px-4">
+        <div className="max-w-7xl mx-auto text-center">
+          <p className="text-gray-600">ಲೋಡ್ ಆಗುತ್ತಿದೆ...</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (breakingNews.length === 0) return null;
 
   const filtered = selectedCategory
     ? allNews.filter((n) => n.categrory_Name === selectedCategory).slice(0, 6)

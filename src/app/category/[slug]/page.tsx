@@ -130,7 +130,7 @@ export default function CategoryPage({
                     d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
                   />
                 </svg>
-                Home
+                ಮನೆ
               </Link>
               <svg
                 className="w-4 h-4 text-gray-400"
@@ -146,7 +146,7 @@ export default function CategoryPage({
                 />
               </svg>
               <span className="text-gray-900 font-semibold">
-                {categoryName}
+                {decodeURIComponent(categoryName)}
               </span>
             </nav>
           </div>
@@ -216,7 +216,7 @@ export default function CategoryPage({
                         href={`/news/${encodeURIComponent(article.slug)}`}
                         className="text-accent-green hover:text-accent-green/80 text-xs font-semibold transition-colors duration-200 flex items-center"
                       >
-                        Read
+                        ಓದಿ
                         <svg
                           className="ml-1 w-3 h-3"
                           fill="none"

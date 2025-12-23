@@ -56,7 +56,7 @@ export default function BlogsPage() {
                     href={`/blogs/${encodeURIComponent(b.slug)}`}
                     className="inline-block mt-3 px-4 py-2 bg-accent-green text-white text-sm font-medium rounded-lg hover:bg-accent-green/80 transition-colors duration-200"
                   >
-                    Read More
+                    ಮತ್ತಷ್ಟು ಓದಿ
                   </Link>
                 </div>
               </div>

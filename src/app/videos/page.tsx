@@ -39,12 +39,12 @@ export default function VideosPage() {
             {videos.map((v: any) => (
               <div
                 key={v.videoDetail_id}
-                className="bg-white rounded-xl shadow-lg overflow-hidden"
+                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
               >
-                <div className="relative h-48 cursor-pointer" onClick={() => handlePlayVideo(v.videoDetail_id)}>
+                <div className="relative h-48 cursor-pointer group" onClick={() => handlePlayVideo(v.videoDetail_id)}>
                   {playingVideoId === v.videoDetail_id ? (
                     <iframe
-                      src={v.fileName}
+                      src={`${v.fileName}?autoplay=1`}
                       title={v.videoTitle}
                       className="w-full h-full"
                       frameBorder="0"
@@ -52,17 +52,31 @@ export default function VideosPage() {
                       allowFullScreen
                     ></iframe>
                   ) : (
-                    <Image
-                      src={v.image}
-                      alt={v.videoTitle}
-                      fill
-                      className="object-cover"
-                      unoptimized
-                    />
+                    <>
+                      <Image
+                        src={v.image}
+                        alt={v.videoTitle}
+                        fill
+                        className="object-cover"
+                        unoptimized
+                      />
+                      {/* Play button overlay */}
+                      <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 group-hover:bg-opacity-40 transition-all duration-300">
+                        <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                          <svg
+                            className="w-8 h-8 text-accent-green ml-1"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M8 5v14l11-7z" />
+                          </svg>
+                        </div>
+                      </div>
+                    </>
                   )}
                 </div>
                 <div className="p-4">
-                  <h3 className="font-semibold text-lg mb-2">{v.videoTitle}</h3>
+                  <h3 className="font-semibold text-lg mb-2 text-gray-900">{v.videoTitle}</h3>
                 </div>
               </div>
             ))}
